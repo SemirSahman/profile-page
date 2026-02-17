@@ -16,7 +16,10 @@ import {
 import EmailIcon from "@mui/icons-material/Email";
 import PlaceIcon from "@mui/icons-material/Place";
 
-const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
+const apiUrl = import.meta.env.VITE_API_URL || 
+  (typeof window !== "undefined" && window.location.hostname === "localhost" 
+    ? "http://localhost:4000" 
+    : "/.netlify/functions");
 
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
@@ -38,7 +41,7 @@ export default function Contact() {
     };
 
     try {
-      const response = await fetch(`${apiUrl}/api/contact`, {
+      const response = await fetch(`${apiUrl}/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
