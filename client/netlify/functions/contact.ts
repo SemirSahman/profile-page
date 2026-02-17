@@ -122,6 +122,7 @@ const handler: Handler = async (event) => {
       process.env.MAILTRAP_TO || "semirsahman94@gmail.com";
 
     if (!mailtrapToken) {
+      console.error("MAILTRAP_TOKEN not set");
       return {
         statusCode: 500,
         headers: { "Access-Control-Allow-Origin": "*" },
@@ -131,6 +132,10 @@ const handler: Handler = async (event) => {
         }),
       };
     }
+
+    console.log("Sending email with Mailtrap...");
+    console.log("From:", mailtrapFrom);
+    console.log("To:", mailtrapTo);
 
     const createdAt = new Date().toISOString();
     const ip =
@@ -168,12 +173,6 @@ const handler: Handler = async (event) => {
       text,
       html,
       category: "Contact Form",
-      headers: [
-        {
-          header: "Reply-To",
-          value: email,
-        },
-      ],
     });
 
     return {
@@ -182,13 +181,16 @@ const handler: Handler = async (event) => {
       body: JSON.stringify({ success: true }),
     };
   } catch (error) {
-    console.error("Mailer error", error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error("Mailer error:", errorMessage);
+    console.error("Full error:", error);
     return {
       statusCode: 500,
       headers: { "Access-Control-Allow-Origin": "*" },
       body: JSON.stringify({
         success: false,
         error: "Failed to send message.",
+        details: errorMessage,
       }),
     };
   }
