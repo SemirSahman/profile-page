@@ -116,11 +116,10 @@ const handler: Handler = async (event) => {
     }
 
     const mailtrapToken = process.env.MAILTRAP_TOKEN;
-    const mailtrapFrom =
-      process.env.MAILTRAP_FROM || "hello@demomailtrap.co";
-    const mailtrapTo =
-      process.env.MAILTRAP_TO || "semirsahman94@gmail.com";
+    const mailtrapFrom = "hello@demomailtrap.co";
+    const mailtrapTo = "semirsahman94@gmail.com";
 
+    console.log("Token exists:", !!mailtrapToken);
     if (!mailtrapToken) {
       console.error("MAILTRAP_TOKEN not set");
       return {
@@ -174,6 +173,8 @@ const handler: Handler = async (event) => {
       html,
       category: "Contact Form",
     });
+
+    console.log("Email sent successfully!");
 
     return {
       statusCode: 200,
