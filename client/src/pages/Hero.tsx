@@ -125,12 +125,12 @@ export default function Hero() {
                 overflow: "hidden",
               }}
             >
-              <Box sx={{ display: "flex", justifyContent: "center", p: 3, maxHeight: "48%", overflow: "visible" }}>
+              <Box sx={{ display: "flex", justifyContent: "center", p: 2, maxHeight: "48%", overflow: "visible" }}>
                 <CardMedia
                   component="img"
-                  image={new URL("../assets/profile.svg", import.meta.url).toString()}
+                  image={new URL("../assets/profilePictureSS.jpg", import.meta.url).toString()}
                   alt="Portrait of Semir Sahman"
-                  sx={{ width: "100%", height: "auto", borderRadius: 2, objectFit: "contain" }}
+                  sx={{ width: "100%", height: "100%", borderRadius: 2, objectFit: "cover" }}
                 />
               </Box>
               <CardContent

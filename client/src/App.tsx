@@ -6,6 +6,7 @@ import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import {
   AppBar,
+  Avatar,
   Box,
   Button,
   Container,
@@ -59,22 +60,18 @@ function App() {
             px: { xs: 2, md: 3 },
           }}
         >
-          <Box
+          <Avatar
+            src={new URL("./assets/profilePictureSS.jpg", import.meta.url).toString()}
+            alt="Semir Sahman"
             sx={{
               width: 46,
               height: 46,
               borderRadius: 2,
-              display: "grid",
-              placeItems: "center",
-              background: "linear-gradient(135deg, #0f766e, #22c55e)",
-              color: "#ecfeff",
-              fontWeight: 700,
-              letterSpacing: "0.04em",
               flexShrink: 0,
+              border: "2px solid",
+              borderColor: "primary.main",
             }}
-          >
-            SS
-          </Box>
+          />
           {!isMobile && (
             <Stack direction="row" spacing={1} alignItems="center">
               <Button color="inherit" href="#about" sx={{ fontWeight: 500 }}>
